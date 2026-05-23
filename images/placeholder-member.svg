@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280" role="img" aria-label="Member photo placeholder">
+  <circle cx="140" cy="140" r="140" fill="#e8f0f8"/>
+  <circle cx="140" cy="105" r="42" fill="#1e4a7a" opacity="0.25"/>
+  <ellipse cx="140" cy="210" rx="70" ry="55" fill="#1e4a7a" opacity="0.2"/>
+</svg>

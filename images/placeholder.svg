@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Image placeholder">
+  <rect width="800" height="500" fill="#e8f0f8"/>
+  <rect x="40" y="40" width="720" height="420" fill="none" stroke="#1e4a7a" stroke-width="2" stroke-dasharray="12 8" opacity="0.4"/>
+  <text x="400" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#1e4a7a" opacity="0.6">Photo placeholder</text>
+  <text x="400" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" fill="#4a5568" opacity="0.5">Replace with images/ filename</text>
+</svg>

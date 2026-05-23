@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEMBER | トライボロジー研究室</title>
+  <meta name="description" content="トライボロジー研究室のメンバー紹介。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link" data-ja="メインコンテンツへスキップ" data-en="Skip to main content">メインコンテンツへスキップ</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-brand">
+        <span class="brand-en">Sato Group, Tribology Lab.</span>
+        <span class="brand-ja" data-ja="トライボロジー研究室" data-en="Tribology Laboratory">トライボロジー研究室</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-set-lang="ja" aria-pressed="true">JP</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-navigation">
+          <span class="sr-only" data-ja="メニューを開く" data-en="Open menu">メニューを開く</span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav id="main-navigation" class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="research.html">RESEARCH</a></li>
+          <li><a href="members.html" aria-current="page">MEMBER</a></li>
+          <li><a href="facilities.html">FACILITIES</a></li>
+          <li><a href="publications.html">PUBLICATIONS</a></li>
+          <li><a href="for-students.html">FOR STUDENTS</a></li>
+          <li><a href="access.html">ACCESS</a></li>
+          <li><a href="news.html">NEWS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <header class="page-hero">
+      <div class="container">
+        <h1>MEMBER</h1>
+        <p class="hero-sub" data-ja="研究室の教員・学生メンバーです。" data-en="Faculty and student members of the laboratory.">研究室の教員・学生メンバーです。</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="member-section">
+          <p class="member-role" data-ja="教員（助教）" data-en="Faculty (Assistant Professor)">教員（助教）</p>
+          <h2 data-ja="教員" data-en="Faculty">教員</h2>
+          <div class="member-grid">
+            <article class="member-card">
+              <div class="member-photo">
+                <img src="images/sato-kaisei.png" width="1024" height="682" data-alt-ja="佐藤 魁星" data-alt-en="Kaisei Sato" alt="佐藤 魁星" loading="lazy" decoding="async">
+              </div>
+              <p class="member-name">
+                <span data-lang="ja">佐藤 魁星</span>
+                <span data-lang="en" hidden>Kaisei Sato</span>
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="member-section">
+          <p class="member-role" data-ja="本科5年" data-en="5th Year (Undergraduate)">本科5年</p>
+          <h2 data-ja="学生" data-en="Students">学生</h2>
+          <div class="member-grid">
+            <article class="member-card member-card--name-only">
+              <p class="member-name">
+                <span data-lang="ja">中嶋 一稀</span>
+                <span data-lang="en" hidden>Kazuki Nakajima</span>
+              </p>
+            </article>
+            <article class="member-card member-card--name-only">
+              <p class="member-name">
+                <span data-lang="ja">酒井田 禮</span>
+                <span data-lang="en" hidden>Rei Sakaida</span>
+              </p>
+            </article>
+            <article class="member-card member-card--name-only">
+              <p class="member-name">
+                <span data-lang="ja">兵頭 拓真</span>
+                <span data-lang="en" hidden>Takuma Hyodo</span>
+              </p>
+            </article>
+            <article class="member-card member-card--name-only">
+              <p class="member-name">
+                <span data-lang="ja">井上 幸大</span>
+                <span data-lang="en" hidden>Kota Inoue</span>
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-lab" data-ja="トライボロジー研究室" data-en="Tribology Laboratory">トライボロジー研究室</p>
+      <p class="footer-affiliation" data-ja="東京工業高等専門学校 機械工学科" data-en="Department of Mechanical Engineering, National Institute of Technology, Tokyo College">東京工業高等専門学校 機械工学科</p>
+      <p class="footer-contact">
+        <span data-ja="お問い合わせ：" data-en="Contact: ">お問い合わせ：</span>
+        <a href="access.html#contact" data-ja="アクセス・連絡先ページ" data-en="Access &amp; contact page">アクセス・連絡先ページ</a>
+      </p>
+      <p class="footer-copy">&copy; <span id="footer-year">2026</span> Sato Group, Tribology Laboratory</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>document.getElementById("footer-year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
