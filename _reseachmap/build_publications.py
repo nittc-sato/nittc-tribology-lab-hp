@@ -34,10 +34,10 @@ MANUAL_JOURNAL_PAPERS = [
         },
         "authors": {
             "ja": [
-                {"name": "佐藤魁星"},
-                {"name": "佐藤優子"},
-                {"name": "渡部誠也"},
-                {"name": "佐々木信也"},
+                {"name": "Kaisei Sato"},
+                {"name": "Yuko Sato"},
+                {"name": "Seiya Watanabe"},
+                {"name": "Shinya Sasaki"},
             ],
             "en": [
                 {"name": "Kaisei Sato"},
@@ -246,12 +246,13 @@ def li_pub_item(title, authors_ja, authors_en, journal, year, doi_link="", data_
     a_ja = authors_ja or authors_en
     a_en = authors_en or authors_ja
     a_attr = f' data-ja="{esc(a_ja)}" data-en="{esc(a_en)}"'
+    a_display = a_en if a_ja == a_en else a_ja
     t_attr = ""
     if t_ja != t_en:
         t_attr = f' data-ja="{esc(t_ja)}" data-en="{esc(t_en)}"'
     return f"""            <li class="pub-item">
               <span class="pub-title"{t_attr}>{esc(title)}</span>
-              <span class="pub-authors"{a_attr}>{esc(a_ja)}</span>
+              <span class="pub-authors"{a_attr}>{esc(a_display)}</span>
               <span class="pub-journal">{journal}</span>
               <span class="pub-year">{esc(year)}</span>{doi_link}
             </li>"""
