@@ -78,6 +78,25 @@
     });
   }
 
+  function initGoogleAnalytics() {
+    var id = typeof window.TRIBOLOGY_GA4_ID === "string" ? window.TRIBOLOGY_GA4_ID.trim() : "";
+    if (!id || !/^G-[A-Z0-9]+$/i.test(id)) {
+      return;
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", id, { anonymize_ip: true });
+
+    var script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(script);
+  }
+
   function initNavigation() {
     var toggle = document.querySelector(".nav-toggle");
     var nav = document.querySelector(".main-nav");
@@ -109,10 +128,12 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
+      initGoogleAnalytics();
       initLanguage();
       initNavigation();
     });
   } else {
+    initGoogleAnalytics();
     initLanguage();
     initNavigation();
   }
