@@ -664,6 +664,63 @@ p:last-child {
   gap: var(--space-lg);
 }
 
+.member-faculty {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  margin-bottom: var(--space-md);
+}
+
+.member-profile {
+  text-align: left;
+}
+
+.member-profile__title {
+  margin: 0 0 var(--space-md);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+}
+
+.member-profile__subtitle {
+  margin: var(--space-md) 0 var(--space-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.member-profile__subtitle:first-of-type {
+  margin-top: 0;
+}
+
+.member-career-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.member-career-list li {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: var(--space-sm);
+  padding: 0.4rem 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.member-career-list li:last-child {
+  border-bottom: none;
+}
+
+.member-career-period {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
 .member-card {
   text-align: center;
 }
@@ -1302,6 +1359,16 @@ p:last-child {
 
   .member-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .member-faculty {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .member-career-list li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
   }
 
   .member-photo {
