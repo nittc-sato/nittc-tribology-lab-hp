@@ -138,6 +138,13 @@ def pick_lang(d, key, prefer="ja"):
     return (block.get("en") or block.get("ja") or "").strip()
 
 
+def pick_lang_en_only(d, key):
+    if not isinstance(d, dict):
+        return ""
+    block = d.get(key) or {}
+    return (block.get("en") or "").strip()
+
+
 def authors_strings(authors):
     """Return (ja, en) author lines; join every listed co-author."""
     if not authors:
@@ -307,21 +314,24 @@ def main():
     books_html = []
     for m in sorted(by_type.get("books_etc", []), key=lambda x: x.get("publication_date", ""), reverse=True):
         title = pick_lang(m, "book_title")
-        authors_ja, authors_en = authors_strings(m.get("authors"))
-        authors = authors_ja or authors_en
+        title_en = pick_lang_en_only(m, "book_title") or title
         pub = pick_lang(m, "publisher")
+        pub_en = pick_lang_en_only(m, "publisher") or pub
         y = year_from(m.get("publication_date"))
         books_html.append(
-            f'            <li data-ja="{esc(y)}年 — {esc(title)}（{esc(pub)}）{esc(authors)}" '
-            f'data-en="{esc(y)} — {esc(title)} ({esc(pub)})">{esc(y)} — {esc(title)}（{esc(pub)}）</li>'
+            f'            <li data-ja="{esc(y)}年 — {esc(title)}（{esc(pub)}）" '
+            f'data-en="{esc(y)} — {esc(title_en)} ({esc(pub_en)})">{esc(y)} — {esc(title)}（{esc(pub)}）</li>'
         )
 
     # Awards
     awards_html = []
     for m in sorted(by_type.get("awards", []), key=lambda x: x.get("award_date", ""), reverse=True):
         name = pick_lang(m, "award_name")
+        name_en = pick_lang_en_only(m, "award_name") or name
         assoc = pick_lang(m, "association")
+        assoc_en = pick_lang_en_only(m, "association") or assoc
         winners = ""
+        winners_en = ""
         wblock = m.get("winners") or {}
         if isinstance(wblock, dict):
             wj = wblock.get("ja") or wblock.get("en") or []
@@ -329,10 +339,17 @@ def main():
                 winners = "，".join(x.get("name", "") for x in wj)
             elif wj:
                 winners = str(wj[0])
+            we = wblock.get("en") or []
+            if we and isinstance(we[0], dict):
+                winners_en = ", ".join(x.get("name", "") for x in we)
+            elif we:
+                winners_en = str(we[0])
+        if not winners_en:
+            winners_en = winners
         d = m.get("award_date", "")
         y, mo = d[:4], d[5:7] if len(d) >= 7 else ""
         label_ja = f"{y}年{mo}月 — {name}（{assoc}）{winners}"
-        label_en = f"{y}-{mo} — {pick_lang(m, 'award_name', 'en')} ({pick_lang(m, 'association', 'en')}) {winners}"
+        label_en = f"{y}-{mo} — {name_en} ({assoc_en}) {winners_en}"
         awards_html.append(f'            <li data-ja="{esc(label_ja)}" data-en="{esc(label_en)}">{esc(label_ja)}</li>')
 
     # Presentations (oral, recent 35)
