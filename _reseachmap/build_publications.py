@@ -377,6 +377,7 @@ def main():
         grants_html.append(f'            <li data-ja="{esc(label_ja)}" data-en="{esc(label_en)}">{esc(label_ja)}</li>')
 
     # Committee
+    ADDITIVE_GROUP_URL = "https://www.tribology.jp/unit/s-201/index.html"
     comm_html = []
     for m in sorted(by_type.get("committee_memberships", []), key=lambda x: x.get("from_date", ""), reverse=True):
         cn = pick_lang(m, "committee_name")
@@ -386,7 +387,16 @@ def main():
         td_disp = "現在" if td == "9999" else td
         label_ja = f"{fd}–{td_disp} — {assoc} {cn}"
         label_en = f"{fd}–{td_disp} — {pick_lang(m, 'association', 'en')} {pick_lang(m, 'committee_name', 'en')}"
-        comm_html.append(f'            <li data-ja="{esc(label_ja)}" data-en="{esc(label_en)}">{esc(label_ja)}</li>')
+        if "添加剤技術研究会" in label_ja and "幹事" in label_ja:
+            prefix_ja = f"{fd}–{td_disp} — {assoc} "
+            prefix_en = f"{fd}–{td_disp} — {pick_lang(m, 'association', 'en')} "
+            comm_html.append(
+                f'            <li class="committee-item"><span data-ja="{esc(prefix_ja)}" data-en="{esc(prefix_en)}">{esc(prefix_ja)}</span>'
+                f'<a href="{ADDITIVE_GROUP_URL}" target="_blank" rel="noopener noreferrer" data-ja="添加剤技術研究会" data-en="Research Group on Lubricant Additive Technology">添加剤技術研究会</a>'
+                f'<span data-ja=" 幹事" data-en=" (executive member)"> 幹事</span></li>'
+            )
+        else:
+            comm_html.append(f'            <li data-ja="{esc(label_ja)}" data-en="{esc(label_en)}">{esc(label_ja)}</li>')
 
     OUT.write_text(
         f"<!-- AUTO-GENERATED from {JSONL.name} -->\n"
