@@ -145,6 +145,43 @@ def pick_lang_en_only(d, key):
     return (block.get("en") or "").strip()
 
 
+def contains_japanese(text):
+    return bool(re.search(r"[一-龥ぁ-んァ-ン]", text or ""))
+
+
+def normalize_en_fallback(text):
+    if not text:
+        return ""
+    out = text
+    replacements = {
+        "高回転条件下における歯面損傷予測モデル構築に向けた潤滑油処方指針と摩耗機構の解明": "Lubricant formulation guidelines and wear mechanisms for building a tooth-surface damage prediction model under high-speed conditions",
+        "新規AFM摩擦面その場観察を用いた反応膜の形成・除去の平衡状態の速度論的再整理": "Kinetic reorganization of the equilibrium between formation and removal of tribofilms using a novel in-situ AFM friction-surface observation method",
+        "潤滑油添加剤の分子構造と表面反応膜の成長速度の体系化": "Systematization of molecular structures of lubricant additives and growth rates of surface reaction films",
+        "高速回転歯車の信頼性確保へ向けた摩擦/摩耗影響因子の解明": "Investigation of friction/wear factors for improving reliability of high-speed rotating gears",
+        "日本学術振興会": "Japan Society for the Promotion of Science",
+        "日本機械学会": "Japan Society of Mechanical Engineers",
+        "東京理科大学": "Tokyo University of Science",
+        "TRAMI 自動車用動力伝達技術研究組合": "TRAMI (Automotive Transmission Technology Research Association)",
+        "科学研究費助成事業": "Grants-in-Aid for Scientific Research (KAKENHI)",
+        "若手研究": "Early-Career Scientists",
+        "基盤研究(B)": "Scientific Research (B)",
+        "特別研究員奨励費": "Grant-in-Aid for JSPS Fellows",
+        "日本トライボロジー学会": "Japanese Society of Tribologists",
+        "一般社団法人 ": "",
+        "編集委員": "Editorial Board Member",
+        "トライボロジー会議 春 2024 実行委員": "Tribology Conference Spring 2024, Executive Committee",
+        "トライボロジー会議 春 2023 実行委員": "Tribology Conference Spring 2023, Executive Committee",
+        "関東学生会 会員校役員": "Kanto Student Branch, Member School Officer",
+        "2025年度": "FY2025",
+        "現在": "present",
+        "幹事": "executive member",
+    }
+    for ja, en in replacements.items():
+        out = out.replace(ja, en)
+    out = re.sub(r"\s{2,}", " ", out).strip()
+    return out
+
+
 def authors_strings(authors):
     """Return (ja, en) author lines; join every listed co-author."""
     if not authors:
@@ -390,7 +427,11 @@ def main():
         grant_no = (m.get("identifiers") or {}).get("grant_number", [""])[0]
         extra = f" [{grant_no}]" if grant_no else ""
         label_ja = f"{fd}–{td} — {title}（{org} / {system} {cat}）{inv}{extra}"
-        label_en = f"{fd}–{td} — {pick_lang(m, 'research_project_title', 'en')} ({pick_lang(m, 'offer_organization', 'en')})"
+        title_en = pick_lang_en_only(m, "research_project_title") or title
+        org_en = pick_lang_en_only(m, "offer_organization") or org
+        label_en = f"{fd}–{td} — {title_en} ({org_en})"
+        if contains_japanese(label_en):
+            label_en = normalize_en_fallback(label_en)
         grants_html.append(f'            <li data-ja="{esc(label_ja)}" data-en="{esc(label_en)}">{esc(label_ja)}</li>')
 
     # Committee
@@ -403,10 +444,15 @@ def main():
         td = m.get("to_date", "")
         td_disp = "現在" if td == "9999" else td
         label_ja = f"{fd}–{td_disp} — {assoc} {cn}"
-        label_en = f"{fd}–{td_disp} — {pick_lang(m, 'association', 'en')} {pick_lang(m, 'committee_name', 'en')}"
+        assoc_en = pick_lang_en_only(m, "association") or assoc
+        cn_en = pick_lang_en_only(m, "committee_name") or cn
+        td_disp_en = "present" if td == "9999" else td
+        label_en = f"{fd}–{td_disp_en} — {assoc_en} {cn_en}"
+        if contains_japanese(label_en):
+            label_en = normalize_en_fallback(label_en)
         if "添加剤技術研究会" in label_ja and "幹事" in label_ja:
             prefix_ja = f"{fd}–{td_disp} — {assoc} "
-            prefix_en = f"{fd}–{td_disp} — {pick_lang(m, 'association', 'en')} "
+            prefix_en = f"{fd}–{td_disp_en} — {assoc_en}, "
             comm_html.append(
                 f'            <li class="committee-item"><span data-ja="{esc(prefix_ja)}" data-en="{esc(prefix_en)}">{esc(prefix_ja)}</span>'
                 f'<a href="{ADDITIVE_GROUP_URL}" target="_blank" rel="noopener noreferrer" data-ja="添加剤技術研究会" data-en="Research Group on Lubricant Additive Technology">添加剤技術研究会</a>'
