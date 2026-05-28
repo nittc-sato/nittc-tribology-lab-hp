@@ -866,6 +866,10 @@ p:last-child {
   margin: 0 0.05em;
 }
 
+.member-faculty + .profile-links {
+  margin-top: var(--space-lg);
+}
+
 .external-links {
   display: flex;
   flex-wrap: wrap;
@@ -1102,7 +1106,77 @@ p:last-child {
 
 .collab-intro {
   margin: 0 0 var(--space-lg);
-  max-width: 42rem;
+  max-width: 52rem;
+}
+
+.collab-industry {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  max-width: 52rem;
+}
+
+.collab-industry h3 {
+  margin: 0 0 var(--space-md);
+  font-size: 1.1rem;
+}
+
+.collab-industry h3 .section-label-en {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.collab-industry-types {
+  margin: var(--space-md) 0;
+  padding: 0;
+}
+
+.collab-industry-types > div {
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.collab-industry-types > div:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.collab-industry-types dt {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.collab-industry-types dd {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.collab-industry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0 0;
+}
+
+.collab-industry-links a {
+  font-weight: 600;
+}
+
+.contact-industry p {
+  margin: 0 0 0.35rem;
+}
+
+.contact-industry p:last-child {
+  margin-bottom: 0;
 }
 
 .topic-number--section {
