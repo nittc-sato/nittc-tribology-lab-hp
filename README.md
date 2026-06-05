@@ -111,41 +111,28 @@ To add items manually, edit `publications.html` or regenerate after updating the
 
 Layout and tone were informed by an external academic lab site; see `_references/reference-notes.md`. Site assets are original.
 
-## SEO, sitemap, and custom domain
+## SEO and sitemap
+
+Published at **GitHub Pages** only:
+
+`https://nittc-sato.github.io/nittc-tribology-lab-hp/`
 
 ### Files
 
 | File | Purpose |
 |------|---------|
-| `robots.txt` | Crawler rules and sitemap URLs |
-| `sitemap.xml` | Canonical URLs on `https://tribo.tokyo-ct.ac.jp/` |
-| `sitemap-github.xml` | Interim URLs on GitHub Pages (until DNS is live) |
-| `CNAME` | GitHub Pages custom domain (`tribo.tokyo-ct.ac.jp`) |
+| `robots.txt` | Crawler rules and sitemap URL |
+| `sitemap.xml` | All 9 public pages |
 
-Each public HTML page includes `<link rel="canonical" href="https://tribo.tokyo-ct.ac.jp/...">`.
-
-### Custom domain setup (`tribo.tokyo-ct.ac.jp`)
-
-1. **DNS (Tokyo College IT)** — add a CNAME record:
-   - **Host:** `tribo`
-   - **Type:** CNAME
-   - **Value:** `nittc-sato.github.io`
-2. **GitHub** — repository **Settings → Pages → Custom domain** → enter `tribo.tokyo-ct.ac.jp` → Save → enable **Enforce HTTPS** (after DNS propagates, may take up to 24 h).
-3. **Verify** — open `https://tribo.tokyo-ct.ac.jp/` in a browser.
-
-The `CNAME` file in the repo root is required for GitHub Pages to keep the custom domain on deploy.
+Each public HTML page includes `<link rel="canonical" href="https://nittc-sato.github.io/nittc-tribology-lab-hp/...">`.
 
 ### Google Search Console
 
 Run `submit-search-console.bat` for a checklist and links.
 
-1. Add properties (URL prefix):
-   - `https://nittc-sato.github.io/nittc-tribology-lab-hp/`
-   - `https://tribo.tokyo-ct.ac.jp/` (after DNS works)
+1. Add property (URL prefix): `https://nittc-sato.github.io/nittc-tribology-lab-hp/`
 2. Verify ownership (HTML file `googleb2f62fd827108744.html` is already in the repo).
-3. **Sitemaps** → submit:
-   - GitHub: `sitemap-github.xml`
-   - Custom domain: `sitemap.xml`
+3. **Sitemaps** → submit: `sitemap.xml`
 4. **URL inspection** → paste each main page URL → **Request indexing** (top, research, publications, members, news, facilities, for-students, access).
 
 Also link to the lab site from [mech.tokyo-ct.ac.jp](https://mech.tokyo-ct.ac.jp/) faculty page and [researchmap](https://researchmap.jp/kaisei_sato) to speed up discovery.

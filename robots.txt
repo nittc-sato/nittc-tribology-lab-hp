@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
 
-# Primary (custom domain)
-Sitemap: https://tribo.tokyo-ct.ac.jp/sitemap.xml
-
-# Interim (GitHub Pages URL until DNS is live)
-Sitemap: https://nittc-sato.github.io/nittc-tribology-lab-hp/sitemap-github.xml
+Sitemap: https://nittc-sato.github.io/nittc-tribology-lab-hp/sitemap.xml
