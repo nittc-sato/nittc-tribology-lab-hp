@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tribology Laboratory — Tokyo College of Technology
+   Tribology Laboratory — personal research site (Sato Group)
    Static site styles (GitHub Pages)
    ========================================================================== */
 
@@ -131,6 +131,15 @@ button:focus-visible {
   font-size: 0.8rem;
   color: var(--color-text-muted);
   margin-top: 0.15rem;
+}
+
+.brand-tagline {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+  max-width: 16rem;
 }
 
 .header-actions {
@@ -995,10 +1004,32 @@ p:last-child {
   margin: 0 0 var(--space-xs);
 }
 
-.footer-affiliation {
+.footer-operator {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-sm);
+}
+
+.footer-disclaimer {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  margin: var(--space-md) 0 0;
+  padding: var(--space-sm);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.section-note,
+.site-notice {
   font-size: 0.9rem;
   color: var(--color-text-muted);
   margin: 0 0 var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent-pale);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
 }
 
 .footer-contact {
