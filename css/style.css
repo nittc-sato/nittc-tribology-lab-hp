@@ -139,7 +139,34 @@ button:focus-visible {
   color: var(--color-text-muted);
   margin-top: 0.2rem;
   line-height: 1.4;
-  max-width: 16rem;
+  max-width: 18rem;
+}
+
+.site-banner {
+  background: #fff8e6;
+  border-bottom: 2px solid #c9a227;
+  padding: var(--space-sm) 0;
+}
+
+.site-banner__text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #5c4a1a;
+  font-weight: 500;
+}
+
+.home-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin: 0.35rem 0 var(--space-sm);
+  font-weight: 500;
+}
+
+.profile-affiliation {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 var(--space-md);
 }
 
 .header-actions {
